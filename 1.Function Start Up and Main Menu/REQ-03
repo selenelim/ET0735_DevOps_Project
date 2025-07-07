@@ -1,0 +1,8 @@
+def checkDrinkStock(choice):
+    if drinks[choice]["stock"] == 0:
+        lcd.clear()
+        lcd.message("Out of Stock\nSelect another drink")
+        time.sleep(2)
+        displayDrinkOptions()
+        return False
+    return True

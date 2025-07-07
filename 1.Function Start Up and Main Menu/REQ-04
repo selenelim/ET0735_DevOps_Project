@@ -1,0 +1,21 @@
+def displayPurchaseConfirmation(choice):
+    lcd.clear()
+    lcd.message("Confirm Purchase?\n1. YES 2. NO")
+    while True:
+        confirm = read_keypad()
+        if confirm == '1':
+            dispenseDrink(choice)
+            break
+        elif confirm == '2':
+            displayDrinkOptions()
+            selectDrinkOptions()
+            break
+
+def dispenseDrink(choice):
+    lcd.clear()
+    lcd.message(f"Dispensing\n{drinks[choice]['name']}")
+    # motor.activate() or GPIO output
+    drinks[choice]["stock"] -= 1
+    time.sleep(2)
+    displayMainMenu()
+    selectMainMenu()

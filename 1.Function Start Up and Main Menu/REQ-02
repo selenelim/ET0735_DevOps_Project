@@ -1,0 +1,23 @@
+drinks = {
+    "1": {"name": "Cola", "price": 1.40, "stock": 5},
+    "2": {"name": "Sprite", "price": 1.50, "stock": 3},
+    "3": {"name": "Ice Lemon Tea", "price": 1.35, "stock": 0},
+    "4": {"name": "Water", "price": 1.00, "stock": 10}
+}
+
+def displayDrinkOptions():
+    lcd.clear()
+    lcd.message("1.Cola $1.40\n2.Sprite $1.50")
+    time.sleep(2)
+    lcd.clear()
+    lcd.message("3.Tea $1.35\n4.Water $1.00")
+
+def selectDrinkOptions():
+    while True:
+        choice = read_keypad()
+        if choice in drinks:
+            if checkDrinkStock(choice):
+                displayPurchaseConfirmation(choice)
+            else:
+                continue  # back to drink selection
+            break

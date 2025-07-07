@@ -1,0 +1,14 @@
+def displayMainMenu():
+    lcd.clear()
+    lcd.message("1. Select Drink\n2. Remote Pickup")
+
+def selectMainMenu():
+    while True:
+        choice = read_keypad()  # e.g., '1' or '2'
+        if choice == '1':
+            displayDrinkOptions()
+            selectDrinkOptions()
+            break
+        elif choice == '2':
+            scanBarcode()
+            break

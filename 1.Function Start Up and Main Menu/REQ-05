@@ -1,0 +1,22 @@
+def scanBarcode():
+    lcd.clear()
+    lcd.message("Scan QR/Barcode\n to Collect Drink.")
+    barcode = read_barcode_camera()  # From USB cam or PiCam
+    code = parse_barcode(barcode)
+
+    if code in remote_orders:
+        drink = remote_orders[code]["drink"]
+        lcd.clear()
+        lcd.message(f"Dispensing\n{drink}")
+        # motor.activate()
+        time.sleep(2)
+        lcd.clear()
+        lcd.message("Enjoy your drink!")
+        del remote_orders[code]  # mark as collected
+    else:
+        lcd.clear()
+        lcd.message("Invalid Code\nTry again.")
+        time.sleep(2)
+
+    displayMainMenu()
+    selectMainMenu()
